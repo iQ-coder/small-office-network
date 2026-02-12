@@ -1,0 +1,45 @@
+Configure the Router Interface
+
+enable
+configure terminal
+interface gig0/0
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+	
+to check if it's up
+
+show ip interface brief 
+
+
+Configure DHCP on the Router
+
+configure terminal 
+
+ip dhcp excluded-address 192.168.10.1
+ip dhcp excluded-address 192.168.10.10
+ip dhcp exculded-address 192.168.10.2 192.168.10.49
+
+Create DHCP Pool
+ip dhcp pool OFFICE
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+dns-server 8.8.8.8
+exit 
+
+
+Basic Security
+
+
+enable
+configure terminal
+hostname R1
+enable secret cisco123
+service password-encryption
+line console 0
+password admin
+login
+exit
+line vty 0 4
+password admin
+login
+exit
